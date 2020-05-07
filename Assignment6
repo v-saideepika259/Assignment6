@@ -1,0 +1,163 @@
+1. Write a program for the Insertion sort algorithm.
+#include<stdio.h>
+int main()
+{
+   int i,j,n,temp,a[25];
+   printf("enter the number of elements to be used: ");
+   scanf("%d",&n);
+   printf("Enter %d elements: ",n);
+   for(i=0;i<n;i++)
+      scanf("%d",&a[i]);
+   for(i=1;i<n;i++)
+   {
+      temp=a[i];
+      j=i-1;
+      while((temp<a[j])&&(j>=0))
+      {
+         a[j+1]=a[j];
+         j=j-1;
+      }
+      a[j+1]=temp;
+   }
+   printf("descending Order of Sorted elements: ");
+   for(i=0;i<n;i++)
+      printf(" %d",a[i]);
+
+   return 0;
+  }
+  
+  
+2). Write a program for the Selection sort algorithm.
+#include <stdio.h>
+int main()
+{
+ int a[100],n,i,j,position,temp;
+ printf("Enter number of elements");
+ scanf("%d",&n);
+ printf("Enter %d Numbers", n);
+ for (i=0;i<n;i++)
+  scanf("%d",&a[i]);
+ for(i=0;i<n-1;i++)
+ {
+  position=i;
+  for(j=i+1;j<n;j++)
+  {
+   if(a[position]>a[j])
+    position=j;
+  }
+  if(position!=i)
+  {
+   temp=a[i];
+   a[i]=a[position];
+   a[position]=temp;
+  }
+ }
+ printf("the descending Sorted Array: ");
+ for(i=0;i<n;i++)
+  printf("%d",a[i]);
+return 0;
+}
+3.) Write a program for Bubble sort algorithm.
+#include <stdio.h>
+void main()
+{
+  int a[100],n,i,j,temp;
+  printf("Enter number of elements\n");
+  scanf("%d",&n);
+  printf("Enter %d integers\n", n);
+  for (i=0;i<n;i++)
+  {
+    scanf("%d", &a[i]);
+  }
+  for (i=0;i<n-1;i++)
+  {
+    for (j=0;j<n-i-1;j++)
+    {
+      if (a[j]>a[j+1]) 
+      {
+        temp=a[j];
+        a[j]=a[j+1];
+        a[j+1]=temp;
+      }
+    }
+  }
+
+  printf("\nSorted list in ascending order:\n");
+
+  for(i=0;i<n;i++)
+  {
+    printf("%d\n", a[i]);
+  }
+}
+4.) Write a program for the Merge sort algorithm.
+#include<stdio.h>
+ 
+void mergesort(int a[],int i,int j);
+void merge(int a[],int i1,int j1,int i2,int j2);
+ 
+int main()
+{
+	int a[30],n,i;
+	printf("Enter no of elements:");
+	scanf("%d",&n);
+	printf("Enter array elements:");
+	
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&a[i]);
+	}	
+	mergesort(a,0,n-1);
+	
+	printf("\nSorted array is :");
+	for(i=0;i<n;i++)
+	{
+		printf("%d ",a[i]);
+	}	
+	return 0;
+}
+ 
+void mergesort(int a[],int i,int j)
+{
+	int mid;
+		
+	if(i<j)
+	{
+		mid=(i+j)/2;
+		mergesort(a,i,mid);		
+		mergesort(a,mid+1,j);	
+		merge(a,i,mid,mid+1,j);	
+	}
+}
+void merge(int a[],int i1,int j1,int i2,int j2)
+{
+	int temp[50];	
+	int i,j,k;
+	i=i1;	
+	j=i2;	
+	k=0;
+	
+	while(i<=j1 && j<=j2)	
+	{
+		if(a[i]<a[j])
+		{
+			temp[k++]=a[i++];
+		}
+		else
+		{
+			temp[k++]=a[j++];
+		}
+	}
+	
+	while(i<=j1)
+	{
+		temp[k++]=a[i++];
+	}	
+	while(j<=j2)
+	{
+		temp[k++]=a[j++];
+	}	
+	for(i=i1,j=0;i<=j2;i++,j++)
+	{
+		a[i]=temp[j];
+	}
+}
